@@ -1,0 +1,7 @@
+{
+  "name": "TimeSheetApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
