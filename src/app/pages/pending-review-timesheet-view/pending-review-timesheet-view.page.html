@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pending Review Activity</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card style="padding-top: 2%;padding-bottom: 2%;" >
+
+    <ion-label  style="font-size: 20px;padding-left: 5%;">{{this.name }}</ion-label>
+<br>
+  <ion-label color="primary" style="font-size: 20px;padding-left: 5%;">{{this.date |
+    date:'dd-MMM-yyyy'}}</ion-label>
+
+  <ion-label color="primary"
+    style="font-size: 20px; float:right; padding-left: 5%; padding-right: 5%; float:right; color: #0a8383;">
+    Total Minutes:{{this.Totaltime}}
+  </ion-label>
+
+</ion-card>
+
+  <ion-item-sliding *ngFor="let item of tsentry">
+
+
+    <ion-item (click)="btn_form(item)" style="background-color: grey;">
+      <ion-label style="padding-left: 11px;margin-top: 0px;margin-bottom: 0px;">
+        <h2 style="white-space: pre-wrap;"*ngIf="item.toplevel=='Project'"><b>{{item.project}}</b></h2>
+       <h2 style="white-space: pre-wrap;" *ngIf="item.toplevel!=='Project'"><b>{{item.toplevel}}</b></h2>
+        <p>Description: {{item.desc}}</p>
+        <p>Reviewer Comment:{{item.revcomment}}</p>
+      </ion-label>
+
+      <ion-note slot="end" style="margin-inline-start: 0px; padding-inline-start: 0px; padding-top: 10px; padding-bottom: 10px;">
+        <p *ngIf="item.reviewed == '1'" style="font-size: 15px; color: green;margin-top: 0px; margin-bottom: 0px;" class="center1">Reviewed</p>
+        <p *ngIf="item.correction == '1'" style="font-size: 15px;color: red;margin-top: 0px; margin-bottom: 0px;" class="center1" >Correction</p>
+        <p *ngIf="item.review == '1'" style="font-size: 15px;color: blue;margin-top: 0px; margin-bottom: 0px;" class="center1" >Sent For Review</p>
+        <!-- <p style="font-size: 15px; color: blueviolet; " ></p> -->
+        <h3 style="font-size: 15px;margin-left: 30px;margin-top: 0px; margin-bottom: 0px;">{{item.timeinmin}} Min
+          <ion-icon name="chevron-forward-outline" style="color:cornflowerblue;font-size: 30px;"></ion-icon>
+        </h3>
+
+      </ion-note>
+    </ion-item>
+
+    <ion-item-options *ngIf="item.review == '1'"  side="end">
+      <ion-item-option color="success"  (click)="btn_Review_ent(item)">
+        <ion-icon slot="icon-only" name="thumbs-up"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+
+    <ion-item-options *ngIf="item.reviewed == '1'|| item.correction == '1'"  side="end">
+      <ion-item-option color="primary"  (click)="btn_reset_ent(item)">
+        <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+
+  </ion-item-sliding>
+</ion-content>
+  <ion-footer class="ion-no-border">
+    <ion-row  >
+      <ion-col size="12" *ngIf="btnHide">
+        <ion-button class="center1" color="success" (click)="btn_Review_TS('')">
+          Reviewed
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" *ngIf="btnHide" >
+        <ion-button class="center1" color="warning" (click)="btn_Review_TS('desc')">
+          Reviewed with Discrepancy
+        </ion-button>
+      </ion-col>
+        <ion-col size="12" *ngIf="!btnHide">
+          <ion-button class="center1" color="danger" (click)="btn_Back_TS()">
+            Send Back For Correction
+          </ion-button>
+        </ion-col>
+    </ion-row>
+  </ion-footer>
+
+
+
+

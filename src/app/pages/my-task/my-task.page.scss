@@ -1,0 +1,17 @@
+.center1 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  ion-content {
+    --padding-bottom: 10px;
+    --padding-end: 15px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --background: rgb(241, 241, 241);;
+    // --background: #fff url('../../assets/imgs/bg.jpg') no-repeat center center / cover;
+}
+  

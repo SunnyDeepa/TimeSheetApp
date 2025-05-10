@@ -1,0 +1,75 @@
+{
+	"types": [{
+			"typeid": "1",
+			"type": "Project"
+		},
+		{
+			"typeid": "2",
+			"type": "No Work"
+		},
+		{
+			"typeid": "3",
+			"type": "Training (Assigned)"
+		},
+		{
+			"typeid": "4",
+			"type": "Non Project Work"
+		}
+	],
+	"project": [{
+			"projectid": "1",
+			"project": "Marck"
+		},
+		{
+			"projectid": "2",
+			"project": "Pas"
+		}
+	],
+	"category": [{
+			"categoryid": "1",
+			"category": "Testing"
+		},
+		{
+			"categoryid": "2",
+			"category": "Documentation"
+		}
+	],
+	"activity": [{
+			"activityid": "1",
+			"activity": "Query/Doubt Resolution"
+		},
+		{
+			"activityid": "2",
+			"activity": "assign"
+		}
+	],
+	"module": [{
+			"moduleid": "1",
+			"module": "Generic"
+		},
+		{
+			"moduleid": "2",
+			"module": "Testing"
+		}
+	],
+	"functionality": [{
+			"functionalityid": "1",
+			"functionality": "VAPT"
+		},
+		{
+			"functionalityid": "2",
+			"functionality": "Test"
+		}
+	],
+	"started_when": [{
+			"started_whenid": "1",
+			"started_when": "Afternoon"
+		},
+		{
+			"started_whenid": "2",
+			"started_when": "Evening"
+		}
+	]
+	
+
+}

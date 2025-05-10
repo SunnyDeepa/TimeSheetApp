@@ -1,0 +1,119 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="padding-top: 10px;">Activity
+      <ion-label style="font-size: 15px;font-weight: bold;float:right; word-wrap: break-word; padding-top: 15px; color:rgba(252, 203, 130, 0.993);">
+        {{this.status}}</ion-label>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-card>
+  <ion-grid style="padding-top: 0px;margin-top: 10px;">
+
+    <ion-label color="primary" style="font-size: 20px;padding-left: 5%;">{{this.date |
+      date:'dd-MMM-yyyy'}}</ion-label>
+
+    <ion-label color="primary"
+      style="font-size: 20px; float:right; padding-left: 5%; padding-right: 5%; float:right; color: #0a8383;">
+      Total Minutes:{{this.Totaltime1}}
+    </ion-label>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" >
+          <!-- <span class="text ion-text-center">Punch In:</span> -->
+          <ion-datetime  [disabled]="disStrttime"  displayFormat="HH:mm" class="BoxTime" style="padding-left: 0px;padding-top: 0px;
+            padding-bottom: 0px; text-align: center;" placeholder="Punch In" [(ngModel)]="startTime"></ion-datetime>
+          <ion-icon style="text-align:start"name="time" class="icon ion-ios-clock-outline"></ion-icon>
+          <ion-button [disabled]="disStrttime" (click)="btnPunchIn()" type="submit"color="secondary" style="width: 70%;padding: 6px; ">Punch In</ion-button>
+        
+      </ion-col>
+        <ion-col size="6" >
+          <!-- <span class="text ion-text-center">Punch out:</span> -->
+          <ion-datetime [disabled]="disStrttime" displayFormat="HH:mm" class="BoxTime" style="padding-left: 0px;padding-top: 0px;
+            padding-bottom: 0px;  text-align: center;" placeholder="Punch out" [(ngModel)]="endTime"></ion-datetime>
+        <ion-icon slot name="time" class="icon ion-ios-clock-outline"></ion-icon>
+        <ion-button [disabled]="disStrttime" (click)="btnPunchOut()" type="submit" color="secondary" style="width: 70%;padding: 6px;">Punch out</ion-button>
+       
+      </ion-col>
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col size="6" class="ion-text-center">
+          <!-- <ion-datetime [disabled]="disStrttime" displayFormat="HH:mm" class="BoxTime" Style="padding-left: 0px;padding-top: 0px;
+            padding-bottom: 0px;" placeholder="Select Time" [(ngModel)]="startTime"></ion-datetime> -->
+        <!-- </ion-col>
+        <ion-col size=" 6" class="ion-text-center"> -->
+          <!-- <ion-datetime [disabled]="disStrttime" displayFormat="HH:mm" class="BoxTime" Style="padding-left: 0px;padding-top: 0px;
+            padding-bottom: 0px;" placeholder="Select Time" [(ngModel)]="endTime"></ion-datetime> -->
+        <!-- </ion-col>
+      </ion-row> -->
+    </ion-grid>
+  </ion-grid>
+</ion-card>
+  <ion-item-sliding *ngFor="let item of tsentry">
+
+
+    <ion-item (click)="btnNew_form('N',item)" style="background-color: grey;">
+      <ion-label style="padding-left: 11px;margin-top: 0px;margin-bottom: 0px;">
+        <h2 style="white-space: pre-wrap;"*ngIf="item.toplevel=='Project'"><b>{{item.project}}</b></h2>
+       <h2 style="white-space: pre-wrap;" *ngIf="item.toplevel!=='Project'"><b>{{item.toplevel}}</b></h2>
+        <p>Description: {{item.description}}</p>
+        <p>Reviewer Comment:{{item.revcomment}}</p>
+      </ion-label>
+
+      <ion-note slot="end" style="margin-inline-start: 0px; padding-inline-start: 0px; padding-top: 10px; padding-bottom: 10px;">
+        <p *ngIf="item.reviewed == '1'" style="font-size: 15px; color: green;margin-top: 0px; margin-bottom: 0px;" class="center1">Reviewed</p>
+        <p *ngIf="item.correction == '1'" style="font-size: 15px;color: red;margin-top: 0px; margin-bottom: 0px;" class="center1" >Correction</p>
+        <!-- <p style="font-size: 15px; color: blueviolet; " ></p> -->
+        <h3 style="font-size: 15px;" class="center1">{{item.timeinmin}} Min
+          <ion-icon name="chevron-forward-outline" style="color:cornflowerblue;font-size: 30px;"></ion-icon>
+        </h3>
+
+      </ion-note>
+    </ion-item>
+
+    <ion-item-options *ngIf="!disStrttime" side="end">
+      <ion-item-option color="danger"  (click)="Delect_Tc(item)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+
+  </ion-item-sliding>
+
+  <ion-item class="ion-text-center" lines="none" *ngIf="tsentrylength== 'undefined'">
+    <ion-label style="font-size: 20px;font-weight: bold;">No Data Found</ion-label>
+  </ion-item>
+
+
+  <ion-fab *ngIf="!EditButton" vertical="bottom" horizontal="end" slot="fixed" (click)="btnNew_form('Y','')">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+<ion-footer>
+  <!-- <ion-button>
+  Draft
+</ion-button> -->
+  <ion-row>
+    <ion-col size="12" *ngIf="!EditButton">
+      <ion-button class="center1" (click)="btnSubmit_TS()">
+        Submit
+      </ion-button>
+    </ion-col>
+    <!-- <ion-col size="6" *ngIf="!EditButton">
+      <ion-button class="center1" (click)="Back()">
+        Back
+      </ion-button>
+    </ion-col>
+    <ion-col size="12" *ngIf="EditButton" class="ion-text-center">
+      <ion-button class="center1" (click)="Back()">
+        Back
+      </ion-button>
+    </ion-col> -->
+  </ion-row>
+</ion-footer>

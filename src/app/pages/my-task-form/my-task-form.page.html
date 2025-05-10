@@ -1,0 +1,134 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="padding-left: 0px;">&nbsp;&nbsp;Task Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-card >
+    <ion-card-header>
+  <ion-row>
+  <ion-col size='4' class="col3" >
+    Project: 
+  </ion-col>
+  <ion-col size='8' class="col9">
+    {{tsRecord.project}}
+  </ion-col>
+  </ion-row>
+        <ion-row>
+          <ion-col size='4'  class="col3">
+            Task Title: 
+          </ion-col>
+          <ion-col size='8' class="col9">
+            {{tsRecord.task_title}}
+          </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size='4'  class="col3">
+              Date: 
+            </ion-col>
+            <ion-col size='8' class="col9">
+              {{tsRecord.start_date}} - {{tsRecord.end_date}}
+            </ion-col>
+            </ion-row>
+          <ion-row>
+            <ion-col size='4'  class="col3">
+              Description: 
+            </ion-col>
+            <ion-col size='8'  class="col9">
+             {{tsRecord.des}}
+            </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size='4'  class="col3">
+                Priority: 
+              </ion-col>
+              <ion-col size='8'  class="col9">
+                {{tsRecord.priority}}
+              </ion-col>
+              </ion-row>
+              <ion-row>
+              <ion-col size='4'  class="col3">
+                Estimated Time: 
+              </ion-col>
+              <ion-col size='8'  class="col9">
+               {{tsRecord.est_time}} Min
+              </ion-col>
+              </ion-row>
+              <ion-row>
+              <ion-col size='4'  class="col3">
+                Utilized time: 
+              </ion-col>
+              <ion-col size='8' class="col9">
+                {{tsRecord.uti_time}} Min
+              </ion-col>
+              </ion-row>
+      </ion-card-header>
+
+      <ion-row>
+        <ion-col >
+          <ion-button [hidden]="tsRecord.task_com=='1'"  expand="block" class="center1" type="submit" color="success"
+           (click)="btnSubmit_task()" >Mark as completed</ion-button>
+          
+        </ion-col>
+      </ion-row>
+
+  </ion-card>
+
+
+  <!-- <ion-list>
+    <ion-item>
+      <ion-label position="floating">Project</ion-label>
+      <ion-input disabled type="text" name="Type" value = 'Bluezone - ProFactor' >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Start Date</ion-label>
+      <ion-input disabled type="text" name="Type" value = '20-05-2021' >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">End Date</ion-label>
+      <ion-input disabled type="text" name="Type"  value = '22-05-2021'  >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Task Title</ion-label>
+      <ion-input disabled type="text" name="Type"  value = 'Testing new module'  >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea disabled type="text" name="Type" value = 'Testing new module and test cases' >
+      </ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Priority</ion-label>
+      <ion-input disabled type="text" name="Type" value = 'High' >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Estimated Time	</ion-label>
+      <ion-input disabled type="text" name="Type" value = '120' >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Utilised Time</ion-label>
+      <ion-input disabled type="text" name="Type" value = '150' >
+      </ion-input>
+    </ion-item>
+
+  </ion-list> -->
+</ion-content>
+
+<!-- <ion-footer class="ion-no-border">
+  <ion-row>
+    <ion-col >
+      <ion-button expand="block" class="center1" type="submit" color="success" >Mark as completed</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer> -->

@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Task List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item-sliding *ngFor="let item of data" >
+
+    <ion-item (click)="Task_form(item)" style="background-color: grey;">
+      <ion-label style="padding-left: 11px;margin-top: 0px;margin-bottom: 0px;">
+        <h2 style="white-space: pre-wrap;"><b>{{item.project}}</b></h2>
+        <p>{{item.task_title}}</p>
+        <p><ion-icon style="text-align:start"name="time" class="icon ion-ios-clock-outline"></ion-icon>
+          {{item.start_date}} - {{item.end_date}}</p>
+      </ion-label>
+
+      <ion-note slot="end" style="margin-inline-start: 0px; padding-inline-start: 0px; padding-top: 10px; padding-bottom: 10px;">
+        
+        <p *ngIf="item.priority=='High'" style="font-size: 15px; margin-top: 5px; margin-bottom: 5px; color:red;"  >{{item.priority}}</p>
+        <p *ngIf="item.priority=='Medium'" style="font-size: 15px; margin-top: 5px; margin-bottom: 5px; color:mediumblue;" >{{item.priority}}</p>
+        <p *ngIf="item.priority=='Low'" style="font-size: 15px; margin-top: 5px; margin-bottom: 5px; color:turquoise;"  >{{item.priority}}</p>
+        <h6 *ngIf="item.task_com=='0'" style="margin-top: 5px; margin-bottom: 5px;">Pending</h6>
+        <h6 *ngIf="item.task_com=='1'" style="margin-top: 5px; margin-bottom: 5px; color: green;">Completed</h6>
+        <h3 style="font-size: 15px;margin-top: 0px; margin-bottom: 0px;" class="center1" >
+          {{item.est_time}} Min
+          <ion-icon  name="chevron-forward-outline" style="color:cornflowerblue;font-size: 30px;"></ion-icon>
+        </h3>
+      </ion-note>
+    </ion-item>
+    
+
+    <ion-item-options [hidden]="item.task_com=='1'" side="end">
+      <ion-item-option color="success"  (click)="btnSubmit_task(item)">
+     completed
+        <!-- <ion-icon slot="icon-only" name="checkmark-circle-sharp"></ion-icon> -->
+      </ion-item-option>
+    </ion-item-options>
+
+  </ion-item-sliding>
+  <ion-item class="ion-text-center" lines="none" *ngIf="data_length==0">
+    <ion-label style="font-size: 20px;font-weight: bold;">No Task Found</ion-label>
+  </ion-item>
+
+
+</ion-content>

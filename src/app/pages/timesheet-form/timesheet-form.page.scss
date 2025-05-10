@@ -1,0 +1,35 @@
+.required {
+    color: red;
+  }
+
+  .label-floating.sc-ion-label-md-h {
+    font-size: 20px !important;
+    color: gray;
+  }
+
+.select-disabled {
+    opacity: 0.8 !important;
+  }
+
+  .item-interactive-disabled.sc-ion-label-md-h:not(.item-multiple-inputs), .item-interactive-disabled:not(.item-multiple-inputs) .sc-ion-label-md-h {
+    cursor: default;
+    opacity: 0.8 !important;
+    pointer-events: none;
+}
+.center1 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+:host(.datetime-disabled) {
+  opacity: 0.8 !important;
+  pointer-events: none;
+}
+.item-label-stacked.sc-ion-textarea-md-h, .item-label-stacked .sc-ion-textarea-md-h, .item-label-floating.sc-ion-textarea-md-h, .item-label-floating .sc-ion-textarea-md-h {
+  --padding-top: 8px;
+  --padding-bottom: 100px;
+  --padding-start: 0;
+}

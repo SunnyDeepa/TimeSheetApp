@@ -1,0 +1,22 @@
+{
+	"starttime": "10:30",
+	"endtime": "19:30",
+	"date": "08-02-2021",
+	"status": "Draft",
+	"statusid": "0",
+	"tsentry": [{
+			"project": "Marck",
+			"id": "1",
+			"desc": "Testing the form",
+			"timeinmin": "160",
+			"revcomment": ""
+		},
+		{
+			"project": "Profactor",
+			"id": "2",
+			"desc": "staus call",
+			"timeinmin": "90",
+			"revcomment": "no call"
+		}
+	]
+}

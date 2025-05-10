@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>My Timesheet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+  </div>
+  <div>
+    <ion-card>
+    <ion-item lines="none" style="font-size: 20px;">
+      <ion-input  type="date" [(ngModel)]="DateSelection" [max]="minDate" placeholder="Select Date">
+      </ion-input >
+      <ion-button class="ion-align-items-start" color="success" (click)="btnonTimeSelected(DateSelection)">New</ion-button>
+    </ion-item> 
+
+    </ion-card>
+    <ion-item *ngIf="MonthDatalength > 0">
+      <ion-label style="padding-left: 3px;font-size: larger; color: blue; ">Latest timesheet</ion-label>
+    </ion-item>
+    <ion-list>
+      <!-- | paginate: { itemsPerPage: 7, currentPage: cp } -->
+      <ion-item *ngFor="let items of monthdata  | paginate: { itemsPerPage: 1, currentPage: cp }"
+        (click)="btnonTimeSelected(items)" detail>
+    
+        <ion-label class="ion-text-wrap">
+          <p class="Font-18 FontBold"><span>{{items.date}}</span></p>
+          <ion-row>
+            <ion-col size="6" class="Font-14 opacity05">
+              <span>Total Min: {{items.timeinmin}}</span>
+            </ion-col>
+            <ion-col size="6" class="Font-14 opacity05; text ion-text-right;">
+              <span>Activity: {{items.activity}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+ 
+        <ion-badge slot="end" *ngIf="items.status=='Sent For Review'" color="warning"
+          style=" margin-inline-start: 0px;">Review</ion-badge>
+        <ion-badge slot="end" *ngIf="items.status== 'Draft'" color="primary" style=" margin-inline-start: 0px;">Draft
+        </ion-badge>
+        <ion-badge slot="end" *ngIf="items.status== 'Reviewed'" color="success" style=" margin-inline-start: 0px;">
+          Reviewed</ion-badge>
+        <ion-badge slot="end" *ngIf="items.status== 'Correction'" color="danger" style=" margin-inline-start: 0px;">
+          Correction</ion-badge>
+        <ion-badge slot="end" *ngIf="items.status== 'Reviewed With Discrepancy'" color="success"
+          style=" margin-inline-start: 0px;">Reviewed</ion-badge>
+      </ion-item>
+      <pagination-controls (pageChange)="cp = $event" class="float-right"></pagination-controls>
+      <!-- <pagination-controls class="ngx-pagination" *ngIf="MonthDatalength > 0" (pageChange)="cp = $event">
+        
+      </pagination-controls> -->
+      <ion-item class="ion-text-center" lines="none" *ngIf="MonthDatalength==0">
+        <ion-label style="font-size: 20px;font-weight: bold;">No Data Found</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-fab  vertical="bottom" horizontal="end" slot="fixed" (click)="Search()">
+    <ion-fab-button>
+      <ion-icon name="Search"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

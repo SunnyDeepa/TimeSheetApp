@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Project name</ion-title>
+    <ion-buttons slot="end" class="navbarIcon" (click)="CloseModal()">
+      <ion-button icon-only>
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-searchbar [(ngModel)]="SearchText" (ionInput)="getItems($event, SearchText)"></ion-searchbar>
+    <ion-button *ngIf="SearchText" color="primary" (click)="showAll()">ShowAll</ion-button>
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let item of ProjectList" text-wrap (click)="GobacktoInitialPage(item)">
+      {{item.val}}
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pending Timesheet form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card >
+  <ion-card-header>
+    <ion-row>
+    <ion-col size='4' class="col3" >
+      Project: 
+    </ion-col>
+    <ion-col size='8' class="col9" style="white-space: pre-wrap;"*ngIf="tsRecord.type=='Project'">{{tsRecord.project}}
+    </ion-col>
+    <ion-col size='8' class="col9" style="white-space: pre-wrap;" *ngIf="tsRecord.type!=='Project'">{{tsRecord.type}}
+    </ion-col>
+    </ion-row>
+          <ion-row>
+            <ion-col size='4'  class="col3">
+              Task Title: 
+            </ion-col>
+            <ion-col size='8' class="col9">
+              {{tsRecord.task}}
+            </ion-col>
+            </ion-row>
+  
+            <ion-row>
+              <ion-col size='4'  class="col3">
+                Category: 
+              </ion-col>
+              <ion-col size='8' class="col9">
+                {{tsRecord.category}}
+              </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size='4'  class="col3">
+                  Activity: 
+                </ion-col>
+                <ion-col size='8' class="col9">
+                  {{tsRecord.activity}}
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size='4'  class="col3">
+                    Started When: 
+                  </ion-col>
+                  <ion-col size='8' class="col9">
+                    {{tsRecord.started_when}}
+                  </ion-col>
+                  </ion-row>
+            <ion-row>
+              <ion-col size='4'  class="col3">
+                Description: 
+              </ion-col>
+              <ion-col size='8'  class="col9">
+               {{tsRecord.desc}}
+              </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size='4'  class="col3">
+                  Time in (Min): 
+                </ion-col>
+                <ion-col size='8'  class="col9">
+                  {{tsRecord.timeinmin}}
+                </ion-col>
+                </ion-row>
+                
+        </ion-card-header>
+      </ion-card >
+
+
+</ion-content>
+
+  <ion-footer class="ion-no-border">
+    <ion-row>
+      <ion-col size="12" *ngIf="tsRecord.review == '1'">
+        <ion-button class="center1" expand="block"  color="tertiary" (click)="btn_review()">
+          Reviewed
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" *ngIf="tsRecord.review == '1'">
+        <ion-button class="center1" expand="block" color="success" (click)="btn_sendback()">
+          Send For Back Correction
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" *ngIf="tsRecord.reviewed == '1'|| tsRecord.correction == '1'">
+        <ion-button class="center1" expand="block" color="primary" (click)="btn_reset_ent()">
+          Refresh
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-footer>
+
+  
+

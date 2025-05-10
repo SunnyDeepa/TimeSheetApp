@@ -1,0 +1,191 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="padding-left: 0px;">&nbsp;&nbsp;Timesheet Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-label style="font-size: 10px;font-weight: bold;float:right; padding-right: 5%; padding-top: 3%;"><span
+      class="required">Fields marked with * are mandatory</span></ion-label>
+  <br>
+  <ion-label color="primary" style="font-size: 15px;padding-left: 5%;">Date : {{this.mtsentry.date |
+    date:'dd-MMM-yyyy'}}</ion-label>
+  <ion-list *ngIf="!ShowDispData" >
+    <ion-item>
+      <ion-label position="floating">Type<span class="required">*</span></ion-label>
+      <ion-select #Type disabled="{{EditButton}}" interface="action-sheet" [(ngModel)]="mtsentry.typeid" [selectedText]="mtsentry.type"
+        (ionChange)="onChangetype(mtsentry.typeid)"  >
+        <ion-select-option *ngFor="let item of Typelist" [value]="item.id">{{item.val}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item [hidden]="!value">
+      <!-- <ion-label position="floating" style="">Project<span class="required">*</span></ion-label> -->
+      <ion-input disabled  placeholder="Search Project" (ionChange)="onChangeproject(mtsentry.projectid)" type="text" name="Project" [(ngModel)]="mtsentry.project">
+      </ion-input>
+      <!--(ngModelChange)="callProjFunct(mtsentry.projectid)"-->
+      <ion-button  disabled="{{EditButton}}" (click)="OpenProjectNameSearchpage()" class="ion-align-items-start"
+        color="success" >
+        <ion-icon name="Search"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item [hidden]="!value">
+      <ion-label position="floating">Task<span class="required">*</span></ion-label>
+      <ion-select #task disabled="{{EditButton}}" interface="action-sheet" [(ngModel)]="mtsentry.taskid" [selectedText]="mtsentry.task"
+         name="Task" (ionChange)="onChangetask(mtsentry.taskid)" >
+        <ion-select-option *ngFor="let item of Tasklist" [value]="item.taskid">{{item.task}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+      <ion-item [hidden]="!value" *ngIf= "task_completeHide" >
+        <ion-label>Is Task Complete</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="mtsentry.task_complete"  ></ion-checkbox>
+      </ion-item>
+
+    <ion-item [hidden]="!value">
+      <ion-label position="floating">Category<span class="required">*</span></ion-label>
+      <ion-select #category disabled="{{EditButton}}"  interface="action-sheet" [(ngModel)]="mtsentry.categoryid" [selectedText]="mtsentry.category"
+        (ionChange)="onChangecategory(mtsentry.categoryid)" name="Category">
+        <ion-select-option *ngFor="let item of Categorylist" [value]="item.id">{{item.val}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item [hidden]="!value">
+      <ion-label position="floating">Activity<span class="required">*</span></ion-label>
+      <ion-select #activity disabled="{{EditButton}}" interface="action-sheet" [(ngModel)]="mtsentry.activityid" [selectedText]="mtsentry.activity"
+        name="Activity" (ionChange)="onChangeactivity(mtsentry.activityid)">
+        <ion-select-option *ngFor="let item of Activitylist" [value]="item.ActivityId">{{item.Activity}}
+        </ion-select-option>
+      </ion-select>
+
+    </ion-item>
+
+    <!-- <ion-item [hidden]="!Modulehide">
+      <ion-label position="floating">Module<span class="required">*</span></ion-label>
+      <ion-select #module (ionChange)="functionlist1(mtsentry.projectid, mtsentry.moduleid)" disabled="{{EditButton}}"
+        [interfaceOptions]="ModuleOpt" [(ngModel)]="mtsentry.moduleid" name="Modules">
+        <ion-select-option *ngFor="let item of Modulelist" [value]="item.ProjectModuleId">{{item.ProjectModule}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item [hidden]="!functionalityhide">
+      <ion-label position="floating">Functionality<span class="required">*</span></ion-label>
+      <ion-select #functionality disabled="{{EditButton}}" [interfaceOptions]="FunctionalityOpt"
+        [(ngModel)]="mtsentry.Functionalityid" name="Functionality" (ionChange)="openStartwhen()">
+        <ion-select-option *ngFor="let item of Functionalitylist" [value]="item.ModuleFunctionalityId">
+          {{item.ModuleFunctionality}}</ion-select-option>
+      </ion-select>
+
+    </ion-item> -->
+
+    <ion-item>
+      <ion-label position="floating">Started When<span class="required">*</span></ion-label>
+      <ion-select #startedwhen disabled="{{EditButton}}" interface="action-sheet"
+        [(ngModel)]="mtsentry.started_whenid"  (ionChange)="Onchnage_Started_When(mtsentry.started_whenid)" [selectedText]="mtsentry.started_when" >
+        <ion-select-option *ngFor="let item of Started_Whenlist" [value]="item.id">{{item.val}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description<span class="required">*</span></ion-label>
+      <ion-textarea #desc  disabled="{{EditButton}}" clearInput type="text" value="" [(ngModel)]="mtsentry.desc"
+        required>
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Time in (Min)<span class="required">*</span></ion-label>
+      <ion-input disabled="{{EditButton}}" clearInput type="number" min="0" maxlength="3" value=""
+        [(ngModel)]="mtsentry.timeinmin" required></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="ShowDispData">
+    <ion-item>
+      <ion-label position="floating">Type<span class="required">*</span></ion-label>
+      <ion-input disabled type="text" name="Type" [(ngModel)]="mtsentry.type" >
+      </ion-input>
+    </ion-item>
+    <ion-item [hidden]="HideProject">
+      <ion-label position="floating" >Project<span class="required">*</span></ion-label>
+      <ion-input disabled placeholder="Search Project" type="text" name="Project" [(ngModel)]="mtsentry.project">
+      </ion-input>
+    </ion-item>
+
+    <ion-item [hidden]="HideProject">
+      <ion-label position="floating">Task<span class="required">*</span></ion-label>
+      <ion-input disabled  type="text" name="Task" [(ngModel)]="mtsentry.task">
+      </ion-input>
+    </ion-item>
+    
+      <ion-item [hidden]="HideProject" *ngIf= "task_completeHide">
+        <ion-label>Is Task Complete</ion-label>
+        <ion-checkbox disabled slot="end" [(ngModel)]="mtsentry.task_complete" ></ion-checkbox>
+      </ion-item>
+
+    <ion-item [hidden]="HideCategory">
+      <ion-label position="floating">Category<span class="required">*</span></ion-label>
+      <ion-input disabled type="text" name="Category" [(ngModel)]="mtsentry.category">
+      </ion-input>
+    </ion-item>
+
+    <ion-item [hidden]="HideActivity">
+      <ion-label position="floating">Activity<span class="required">*</span></ion-label>
+      <ion-input disabled type="text" name="Activity" [(ngModel)]="mtsentry.activity">
+      </ion-input>
+    </ion-item>
+
+    <!-- <ion-item [hidden]="HideModule">
+      <ion-label position="floating">Module<span class="required">*</span></ion-label>
+      <ion-input disabled type="text" name="Modules" [(ngModel)]="mtsentry.module">
+      </ion-input>
+    </ion-item>
+
+    <ion-item [hidden]="Hidefunctionality">
+      <ion-label position="floating">Functionality<span class="required">*</span></ion-label>
+      <ion-input disabled type="text" name="Functionality" [(ngModel)]="mtsentry.functionality">
+      </ion-input>
+    </ion-item> -->
+
+    <ion-item>
+      <ion-label position="floating">Started When<span class="required">*</span></ion-label>
+      <ion-input disabled type="text" name="started_when" [(ngModel)]="mtsentry.started_when">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description<span class="required">*</span></ion-label>
+      <ion-textarea #desc disabled type="text" value="" [(ngModel)]="mtsentry.desc" required>
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Time in (Min)<span class="required">*</span></ion-label>
+      <ion-input disabled type="number" min="0" maxlength="3" value="" [(ngModel)]="mtsentry.timeinmin" required>
+      </ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-row>
+    <ion-col size="12" *ngIf="hideedit">
+      <ion-button class="center1" type="submit" color="tertiary" (click)="btnEdit()">Edit</ion-button>
+    </ion-col>
+    <ion-col size="6" *ngIf="!EditButton">
+      <ion-button class="center1" (click)="btnSave()" type="submit" color="success">Save</ion-button>
+    </ion-col>
+    <ion-col size="6" *ngIf="!EditButton">
+      <ion-button class="center1" (click)="btnGoback()" color="warning">Exit</ion-button>
+    </ion-col>
+    <!-- <ion-col size="6" *ngIf="EditButton && hideedit" class="ion-text-center">
+      <ion-button class="center1" (click)="btnGoback()" color="primary">Back</ion-button>
+    </ion-col>
+    <ion-col size="12" *ngIf="EditButton && !hideedit" class="ion-text-center">
+      <ion-button class="center1" (click)="btnGoback()" color="primary">Back</ion-button>
+    </ion-col> -->
+  </ion-row>
+</ion-footer>

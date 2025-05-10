@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="center" style=" background-color:rgb(223, 255, 255);">
+    <div class="ion-text-center" style="padding-top: 3%; padding-bottom: 2%; background-color: #67aeff;">
+      <img style="width: 50%;" class="ion-text-center" src="../assets/icon/1.JPG">
+    </div>
+
+    <ion-card-header >
+
+      <ion-row >
+        <ion-col size="12">
+          <ion-icon name="person-circle-sharp" style="padding-top: 10px;font-size: 23px;color: black;"></ion-icon>
+             <ion-label class="text ion-text-left" style= " color: black; font-size: 25px; font-weight: bold; font-family: Calibri;" >
+            
+              {{this.Name}} ({{this.userid}}),
+          </ion-label>
+          <br>
+          <ion-icon name="layers-sharp"style="padding-top: 5px;padding-left: 5px;  font-size: 15px;" class="colorgroup"></ion-icon>
+          <ion-label class="text ion-text-left; colorgroup" style=" font-size: 20px;padding-left: 5px; font-family: Calibri;">
+            Director
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    <hr style="width:100%;text-align:left;margin-left:0;     border-width: 1px; ">
+      
+    </ion-card-header>
+    <ion-card-content>
+    <ion-row  style=" font-size: 18px;">
+      <ion-col class="colorgroup">
+      
+      <ion-icon name="mail-sharp" style="padding-top: 10px;font-size: 15px;"></ion-icon>
+      <ion-label class="text ion-text-left " >
+        {{this.EmailId}}
+      </ion-label>
+      <br>
+      <!-- <ion-icon name="pan-sharp" style="padding-top: 10px;"></ion-icon> -->
+      <ion-icon name="calendar-number" style="padding-top: 10px; font-size: 15px;"></ion-icon>
+      <!-- <ion-icon ios="ios-calendar" md="md-calendar" style="padding-top: 10px; font-size: 15px;"></ion-icon> -->
+      <ion-label class="text ion-text-left"  style="padding-bottom: 20px; ;">
+        12 July 2021
+      </ion-label>
+
+      <br>
+      <ion-icon name="call-sharp" style="padding-top: 10px;font-size: 15px;"></ion-icon>
+      <ion-label class="text ion-text-left" >
+        {{this.moblieno}}
+      </ion-label>
+
+      </ion-col>
+    </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

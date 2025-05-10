@@ -1,0 +1,47 @@
+<ion-content>
+  <!--  -->
+  <div style="padding-top: 10%;">
+
+    <ion-card class="center" style="padding-top: 10%; padding-bottom: 10%;">
+      <div class="ion-text-center">
+        <img style="width: 45%;" class="ion-text-center" src="../assets/icon/bzlogo.png">
+      </div>
+      <div class="ion-text-center">
+        <h1 style="color:rgb(24,55,99); font-weight: bold;padding: 5%;font-size: 23px;margin-top: 0px;">Bluezone Systems
+          Pvt. Ltd.</h1>
+      </div>
+      <hr>
+      <div class="ion-text-center">
+        <!-- <h3 style="color:rgb(24,55,99); font-weight: bold;">Vehicle Driver</h3> -->
+        <h2>Login</h2>
+      </div>
+      <ion-item transparent style="padding: 12px;">
+        <ion-icon name="person"></ion-icon>
+        <ion-input type="text" [(ngModel)]="LoginId" placeholder="Login ID" type="text"></ion-input>
+      </ion-item>
+      <ion-item transparent style="padding: 12px;">
+        <ion-icon name="lock-closed"></ion-icon>
+        <ion-input type="password" [(ngModel)]="Password" placeholder="Password"></ion-input>
+      </ion-item>
+      
+      <ion-button (click)="Login()" color="primary" class="ion-button-class ion-text-center" fill="solid" size="full" expand="block"
+        style="margin-left: 20px !important; margin-right: 20px;">
+        LOGIN
+      </ion-button>
+      <!-- <ion-item lines="none">
+        <ion-button slot="start" size="small" fill="clear">
+          <ion-label class="forget-password">
+            Forgot Password
+          </ion-label>
+        </ion-button>
+      </ion-item> -->
+     
+      <div class="ion-text-center" >
+        <!-- <ion-label>@App version {{Appversion}}</ion-label> -->
+        <ion-label>© 2021 Copyright Bluezone Systems Pvt. Ltd..</ion-label>
+      </div>
+    </ion-card>
+  </div>
+  <!-- </ion-card> -->
+
+</ion-content>

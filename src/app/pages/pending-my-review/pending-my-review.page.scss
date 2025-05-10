@@ -1,0 +1,29 @@
+
+.Font-18 {
+    font-size: 19px;
+  }
+  .Font-14 {
+    font-size: 14px;
+  }
+  .opacity05 {
+    opacity: 0.5;
+  }
+  .padd45 {
+    padding-left: 40px;
+  }
+  .FontBold {
+    font-weight: bold;
+  }
+  
+  ion-content {
+    --padding-bottom: 10px;
+    // --padding-end: 20px;
+    // --padding-start: 20px;
+    --padding-top: 0px;
+    --background: rgb(241, 241, 241);
+    // --background: #fff url('../../assets/imgs/bg.jpg') no-repeat center center / cover;
+  }
+  .slotted[slot="end"] {
+    margin-left: unset;
+    margin-inline-start: 0px !important;
+  }

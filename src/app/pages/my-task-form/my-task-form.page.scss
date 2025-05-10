@@ -1,0 +1,30 @@
+.item-interactive-disabled.sc-ion-label-md-h:not(.item-multiple-inputs), .item-interactive-disabled:not(.item-multiple-inputs) .sc-ion-label-md-h {
+    cursor: default;
+    opacity: 0.8 !important;
+    pointer-events: none;
+}
+.label-floating.sc-ion-label-md-h {
+    font-size: 20px !important;
+    color: gray;
+  }
+
+  .col3{
+    font-size: 18px; 
+    font-weight: bold;
+    font-family:  Roboto;
+  }
+  .col9{
+    font-size: 18px;
+    color: black; 
+    font-family:  Roboto;
+  }
+
+
+  ion-content {
+    --padding-bottom: 10px;
+    // --padding-end: 20px;
+    // --padding-start: 20px;
+    --padding-top: 10px;
+    --background: rgb(241, 241, 241);
+    // --background: #fff url('../../assets/imgs/bg.jpg') no-repeat center center / cover;
+}

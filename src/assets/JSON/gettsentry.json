@@ -1,0 +1,24 @@
+{
+	"recordid": "1",
+	"statusid": "1",
+	"status": "draft",
+	"date": "08-02-2021",
+	"type": "peoject",
+	"typeid": "1",
+	"project": "TmeSheet",
+	"projectid": "1",
+	"category": "Category",
+	"categoryid": "1",
+	"activity": "Activity",
+	"activityid": "1",
+	"module": "Module",
+	"moduleid": "1",
+	"functionality": "Functionality",
+	"functionalityid": "1",
+	"started_when": "Started When",
+	"started_whenid": "1",
+	"desc": "Description",
+	"timeinmin": "54",
+	"revcomment":""
+
+}

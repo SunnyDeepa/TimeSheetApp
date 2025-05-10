@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pending My Review</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+ 
+  <ion-item >
+    <ion-label position="floating">Select Team Member</ion-label>
+    <ion-select   interface="action-sheet" [(ngModel)]="user" (ionChange)="onChangeUser(user)" name="user">
+      <ion-select-option *ngFor="let item of Member" [value]="item.id">{{item.Name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+ </ion-card>
+
+<ion-list >
+    <ion-item *ngFor="let items of Pendingdata;" (click)="btnonTimeSelected(items)" detail>
+     
+      <ion-label class="ion-text-wrap">
+        <p class="Font-18 FontBold"><span>{{items.date}}</span></p>
+        <p class="Font-14 opacity05" ><span >Total Minutes: {{items.timeinmin}}</span><span class="padd45">Activity: {{items.activity}}</span></p>
+      </ion-label>
+      <ion-badge slot="end" *ngIf="items.status=='Sent For Review'" color="warning"style= " margin-inline-start: 0px;">Review</ion-badge>
+      <ion-badge slot="end" *ngIf="items.status== 'Draft'" color="primary"style= " margin-inline-start: 0px;">Draft</ion-badge>
+      <ion-badge slot="end" *ngIf="items.status== 'Reviewed'" color="success"style= " margin-inline-start: 0px;">Reviewed</ion-badge>
+      <ion-badge slot="end" *ngIf="items.status== 'Correction'" color="danger"style= " margin-inline-start: 0px;">Correction</ion-badge>
+      <ion-badge slot="end" *ngIf="items.status== 'Reviewed With Discrepancy'" color="success"style= " margin-inline-start: 0px;">Reviewed</ion-badge>
+    </ion-item>
+    <ion-item class="ion-text-center" lines="none" *ngIf="Pendingdatalength=='0'">
+      <ion-label style="font-size: 20px;font-weight: bold;background-color: rgb(255, 227, 218);">No Data Found</ion-label>
+    </ion-item>
+
+  </ion-list>
+
+
+
+</ion-content>
